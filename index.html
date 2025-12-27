@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据配置管理系统</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div>
+                    <h1>数据配置管理系统</h1>
+                    <p class="subtitle">参数配置与数据管理工具</p>
+                </div>
+                <button id="add-field-btn" class="btn btn-add-field" title="新增字段">
+                    <span class="icon">+</span> 新增字段
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <!-- 分组管理区域 -->
+            <section class="groups-section">
+                <div class="section-header">
+                    <h2>分组管理</h2>
+                    <button id="add-group-btn" class="btn btn-primary">添加分组</button>
+                </div>
+                <div id="groups-container" class="groups-container">
+                    <!-- 分组树将通过JS动态生成 -->
+                </div>
+            </section>
+
+            <!-- 字段定义区域 -->
+            <section class="fields-section">
+                <div class="section-header">
+                    <h2>字段定义</h2>
+                    <div class="field-controls">
+                        <label class="field-visibility-toggle">
+                            <input type="checkbox" id="toggle-all-fields"> 显示/隐藏字段
+                        </label>
+                    </div>
+                </div>
+                <div id="fields-container" class="fields-container">
+                    <!-- 默认字段将通过JS动态生成 -->
+                </div>
+            </section>
+
+            <!-- 数据填写区域 -->
+            <section class="data-section">
+                <div class="section-header">
+                    <h2>数据填写</h2>
+                    <div class="data-actions">
+                        <button id="add-row-btn" class="btn btn-primary">添加行</button>
+                        <button id="delete-selected-btn" class="btn btn-danger">删除选中</button>
+                        <button id="save-btn" class="btn btn-save">保存数据</button>
+                        <button id="export-btn" class="btn btn-export">导出</button>
+                    </div>
+                </div>
+                <div id="data-table-container" class="data-table-container">
+                    <table id="data-table" class="data-table">
+                        <thead id="table-head">
+                            <!-- 表头将通过JS动态生成 -->
+                        </thead>
+                        <tbody id="table-body">
+                            <!-- 数据行将通过JS动态生成 -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 新增字段模态框 -->
+    <div id="add-field-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>新增字段</h3>
+                <button class="modal-close" id="close-modal-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="new-field-name">字段名称：</label>
+                    <input type="text" id="new-field-name" placeholder="请输入字段名称" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-field-type">字段类型：</label>
+                    <select id="new-field-type">
+                        <option value="text">文本</option>
+                        <option value="number">数字</option>
+                        <option value="date">日期</option>
+                        <option value="boolean">布尔值</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="confirm-add-field-btn" class="btn btn-primary">确认</button>
+                <button id="cancel-add-field-btn" class="btn btn-secondary">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 新增/编辑分组模态框 -->
+    <div id="group-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="group-modal-title">新增分组</h3>
+                <button class="modal-close" id="close-group-modal-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="group-name">组名：<span class="required">*</span></label>
+                    <input type="text" id="group-name" placeholder="例如：系统参数" required>
+                </div>
+                <div class="form-group">
+                    <label for="group-struct-name">数据结构名字：<span class="required">*</span></label>
+                    <input type="text" id="group-struct-name" placeholder="例如：SystemParam" required>
+                </div>
+                <div class="form-group">
+                    <label for="group-parent">父分组：</label>
+                    <select id="group-parent">
+                        <option value="">无（顶级分组）</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="confirm-group-btn" class="btn btn-primary">确认</button>
+                <button id="cancel-group-btn" class="btn btn-secondary">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
+
